@@ -1,19 +1,19 @@
 # varroa_mite_detector
 # ITML7.110 - Varroa destructor object detection application
-![Tensorflow](../images/Tensorflow.jpg)
+![Tensorflow](images/Tensorflow.jpg)
 
 
 
-![Drone](../images/1.jpg)
-![Varroa](../images/varroa-data-1.jpg)
+![Drone](images/1.jpg)
+![Varroa](images/varroa-data-1.jpg)
 
 ##Introduction
 
 The parasitic mite Varroa destructor is the greatest single driver of the global honey bee health decline. Better understanding of the association of this parasite and its host is critical to developing sustainable management practices.
 
 ### Varroa mite locations
-![Electron microscope](../images/002.jpg)
-![Varroa Locations](../images/Preferred_feeding_location_of_Varroa_destructor_mites_on_adult_host_bees.jpg)
+![Electron microscope](images/002.jpg)
+![Varroa Locations](images/Preferred_feeding_location_of_Varroa_destructor_mites_on_adult_host_bees.jpg)
 
 The following infographic illustrates an interesting 
 
