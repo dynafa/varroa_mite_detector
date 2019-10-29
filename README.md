@@ -1,8 +1,5 @@
 # varroa_mite_detector
 # ITML7.110 - Varroa destructor object detection application
-![Tensorflow](images/Tensorflow.jpg)
-
-
 
 ![Drone](images/1.jpg)
 ![Varroa](images/varroa-data-1.jpg)
