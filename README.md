@@ -1,26 +1,25 @@
-# varroa_mite_detector
-# ITML7.110 - Varroa destructor object detection application
+# Varroa Mite Object-Detection Application
 
-![Drone](images/1.jpg)
-![Varroa](images/varroa-data-1.jpg)
+![Drone](images/Tensorflow.jpg)
 
-##Introduction
+###Introduction
 
 The parasitic mite Varroa destructor is the greatest single driver of the global honey bee health decline. Better understanding of the association of this parasite and its host is critical to developing sustainable management practices.
+In this project, I looked at whether existing computer vision models can be used to accurately detect the varroa mite on bees. This is a challenging task, as the complexity of the environment and the location in which the varroa mite is commonly found is particularly high. Even in the case where a network can be successfully converged, extracting the right data from the bees without disturbing their activities is still going to be a significant challenge.
 
-### Varroa mite locations
+
+##### Varroa mite locations
 ![Electron microscope](images/002.jpg)
+
+Electron microscope photography shows that varroa mite can actually slide between the segments of the bee's body to feed.
+
 ![Varroa Locations](images/Preferred_feeding_location_of_Varroa_destructor_mites_on_adult_host_bees.jpg)
 
-The following infographic illustrates an interesting 
+Preferred feeding location probabilities of varroa on an abult bee. 
 
+The following infographic illustrates an interesting fact about the nature of the varroa mite and their interaction with their hosts, which is they are more likely to be present on the underside of the bee that on the bee's posterior side. Research in the field confirms the reasons why this is, " For five decades, we have believed that these mites consume hemolymph like a tick consumes blood, and that Varroa cause harm primarily by vectoring viruses. Our work shows that they cause damage more directly. Varroa externally digest and consume fat body tissue rather than blood." [Source](https://www.pnas.org/content/116/5/1792)
 
-###  considerations
-
-
-[Source](https://www.pnas.org/content/116/5/1792)
-
-##Project objectives and development processes:
+###Project objectives and development processes:
 **Project objectives**
 - Identify and localize 4 classes of objects in images and video
     - Queen bee
@@ -48,6 +47,7 @@ The following infographic illustrates an interesting
 - SSD inceptionv3
 - Faster RCNN
 - Resnet Faster RCNN
+- Etc.
 
 **Final project dependancies**
 - Tensorflow (1.14.0)
@@ -63,6 +63,9 @@ The following infographic illustrates an interesting
 
 
 **File directory structure**
+
+The following describes the file directory struture of the project.
+
 ```markdown
 ├── build
 │   └── lib
@@ -164,62 +167,129 @@ The following infographic illustrates an interesting
 
 
 ```
-###Theory
-![Worker bee](../images/158.jpg)
+###Collecting and annotating data
 
-### Training
+GoogleImagesDownload was used to automate the collection of images from Google search, an example of the CLI inputs required can be seen below. Chromedriver was necessary as it is required by selenium, which is a great web automation library in Python.
+The total number of images retrieved was less 250, once all non-photographic material, such as cartoons or ads containing bees was purged from the recovered images.
 
+```bash
+#!/usr/bin/env bash
 
+googleimagesdownload --keywords "varroa mite on bee" --format jpg --size medium  --limit 250 --chromedriver /usr/bin/chromedriver
+googleimagesdownload --keywords "worker bee images" --format jpg --size medium --limit 250 --chromedriver /usr/bin/chromedriver
+googleimagesdownload --keywords "drone bee images" --format jpg --size medium --limit 250 --chromedriver /usr/bin/chromedriver
+googleimagesdownload --keywords "queen bee images" --format jpg --size medium --limit 250 --chromedriver /usr/bin/chromedriver
 ```
 
-Epoch 1/10
-120/120 [==============================] - 88s 730ms/step - loss: 2.7087 - val_loss: 3.2434
-Epoch 2/10
-120/120 [==============================] - 76s 636ms/step - loss: 1.6939 - val_loss: 2.2237
-Epoch 3/10
-120/120 [==============================] - 76s 636ms/step - loss: 1.7381 - val_loss: 3.1923
-Epoch 4/10
-120/120 [==============================] - 76s 636ms/step - loss: 1.1044 - val_loss: 1.7972
-Epoch 5/10
-120/120 [==============================] - 77s 639ms/step - loss: 0.9983 - val_loss: 2.6869
-Epoch 6/10
-120/120 [==============================] - 77s 641ms/step - loss: 1.2234 - val_loss: 1.7024
-Epoch 7/10
-120/120 [==============================] - 77s 642ms/step - loss: 1.0364 - val_loss: 1.4967
-Epoch 8/10
-120/120 [==============================] - 77s 643ms/step - loss: 1.1683 - val_loss: 0.9847
-Epoch 9/10
-120/120 [==============================] - 77s 638ms/step - loss: 0.8885 - val_loss: 0.8264
-Epoch 10/10
-120/120 [==============================] - 76s 635ms/step - loss: 0.9023 - val_loss: 0.9118
-```
+![Annotations](images/annot_masks.jpg)
+
+Annotations were made by using the LabelImage tool, which is freely available on github, and commonly used by many deep learning engineers doing similar projects. The tool automatically produces XML files with the info about bounding box dimensions and class type contained within. An example of the file contents is given below.
 
 ```
-120/120 [==============================] - 87s 729ms/step - loss: 1.2035 - val_loss: 0.9630
-Epoch 2/12
-120/120 [==============================] - 76s 637ms/step - loss: 0.5723 - val_loss: 3.4859
-Epoch 3/12
-120/120 [==============================] - 76s 637ms/step - loss: 0.6128 - val_loss: 1.0282
-Epoch 4/12
-120/120 [==============================] - 77s 645ms/step - loss: 0.6680 - val_loss: 1.1278
-Epoch 5/12
-120/120 [==============================] - 77s 642ms/step - loss: 0.5968 - val_loss: 1.1915
-Epoch 6/12
-120/120 [==============================] - 76s 633ms/step - loss: 0.4546 - val_loss: 0.7645
-Epoch 7/12
-120/120 [==============================] - 76s 634ms/step - loss: 0.4923 - val_loss: 0.6541
-Epoch 8/12
-120/120 [==============================] - 76s 635ms/step - loss: 0.4572 - val_loss: 0.8129
-Epoch 9/12
-120/120 [==============================] - 76s 637ms/step - loss: 0.4680 - val_loss: 2.5687
-Epoch 10/12
-120/120 [==============================] - 76s 634ms/step - loss: 0.4252 - val_loss: 1.3153
-Epoch 11/12
-120/120 [==============================] - 76s 632ms/step - loss: 0.3496 - val_loss: 1.5521
-Epoch 12/12
-120/120 [==============================] - 76s 633ms/step - loss: 0.3209 - val_loss: 2.6558
-
+<annotation>
+	<folder>images</folder>
+	<filename>1.jpg</filename>
+	<path>/home/kamoto/Workspaces/Workspace_1/EIT2019/ML/Testing/Mask_RCNN/classes/droimages/1.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>620</width>
+		<height>349</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>drone</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>86</xmin>
+			<ymin>26</ymin>
+			<xmax>529</xmax>
+			<ymax>337</ymax>
+		</bndbox>
+	</object>
+</annotation>
 ```
+
+### Computer hardware and software
+
+The following describes the hardware and software used for running training, evaluation and prediction. 
+
+- i7-8700K CPU @ 3.70GHz
+- MSI MPGZ390 Motherboard
+- MSI DUKE RTX 2080 GPU
+- 32 GB DDR4 RAM
+
+
+- Ubuntu 18.04
+- Python 3.6.8
+- CUDA 10.1
+- cuDNN 7.6.4.38-1
+
+![Msii7](images/msii7.png)
+
+####GPU Issues
+
+When trying to run any neural network which uses convolution algorithms, the following code must be added to allow GPU memory growth. Depending on which version of Tensorflow you are using, there will be a different way to enable this.
+
+TF == 2.0.0
+```python
+physical_devices = tf.config.experimental.list_physical_devices('GPU')
+tf.config.experimental.set_memory_growth(physical_devices[0], True)
+```
+
+TF <= 1.14.0
+```python
+gpu_options = tf.GPUOptions(allow_growth=True)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+keras.backend.tensorflow_backend.set_session(sess)
+```
+
+TF <= 1.13.0
+```python
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+session = tf.Session(config=config, ...)
+```
+
+Additionally, the following code should be added to specify which CUDA should be used by the program. In multi-GPU systems, in order to use a different GPU, the CUDA_VISIBLE_DEVICES variable should be changed to the respective ID of that GPU. For using CPU only, the value can be set at -1.
+
+```python
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ['CUDA_VISIBLE_DEVICES'] = "0"
+```
+
+### Final model choice - Mask-RCNN
+
+The basic process used here is transfer learning, using a pretrained model (Mask-RCNN COCO). Mask-RCNN provides the ability to draw a mask over an object, however in this instance, only bounding boxes are to be used. The exact underlying model is Resnet-101, which has been proven to provide good results. An example of the output from a pretrained Mask-RCNN COCO model can be seen below. 
+
+![Mask-RCNN](images/Output4.jpg) 
+
+### Training and evaluation
+
+Training was performed in time constrained circumstances, so the new network is far from being fully converged. Nevertheless, improvement can be observed in these graphs of the loss during training (Sorry, not enough time for any fancy Tensorboard visualisations).
+
+![Training results](images/training_results.png)
+![Training results2](images/training_results2.png)
+![Training results2](images/training_results3.png)
+
+**Calculating accuracy**
+
+Evaluation of the accuracy of an object detection model is typically done by calculation of the mAP (mean average precision).
+Several factors effected the overall precision of the network, most notably the sparsity of data available relative to the complexity of the organisms involved. Therefore, the mAP for detection of all four classes never reached beyond 60-65%. Due to time constraints and the complexity of the effort required to fix data sparsity and diversity issues, I will only be able to discuss the hypothetical aspects around solving this problem.
+
+**Considering hyper-parameters**
+
+One important observation that needs to be made during the training processes is the selection of relevant hyper-parameters. 
+
+
+
+### Results
+
+So the big question is am I any closer to detecting varroa mite? Yes, however for proper application, significant improvements need to be achieved. 
 
 
 ###Resources:
@@ -234,7 +304,7 @@ Epoch 12/12
 
 [Save and load models](https://www.tensorflow.org/tutorials/keras/save_and_load)
 
-[Transfer learning with TF image classification](https://www.tensorflow.org/tutorials/images/transfer_learning)
+[Transfer learning with TF image classification](https://www.tensorflow.org/tutoriaimages/transfer_learning)
 
 ##### Keras info
 
@@ -282,6 +352,8 @@ Epoch 12/12
 
 [Yolov3 in Keras](https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras/)
 
+[Calculating mAP](https://medium.com/@jonathan_hui/map-mean-average-precision-for-object-detection-45c121a31173)
+
 ##### Research papers
 
 [TF Object detection API](https://ai.googleblog.com/2017/06/supercharge-your-computer-vision-models.html)
@@ -293,3 +365,5 @@ Epoch 12/12
 [Industry information on conventional varroa mite detection and control methods](https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/agriculture-and-seafood/animal-and-crops/animal-production/bee-assets/api_fs222.pdf)
 
 [Varroa destructor feeding method study](https://www.pnas.org/content/116/5/1792)
+
+![Worker bee](images/158.jpg)
