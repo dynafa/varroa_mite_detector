@@ -28,7 +28,6 @@ The following infographic illustrates an interesting fact about the nature of th
     - Worker bee
     - Drone bee
     - Varroa mite
-- Discuss ways which the AI application could be used to quantify the infection of a bee colony with varroa mite.
 - Discuss ways aspects about the implimentation which could be bottlenecking performance
 - Discuss ways which could significantly improved model performance 
 
@@ -198,9 +197,6 @@ The following describes the file directory struture of the project.
     └── train.py
 
 23 directories, 1303 files
-
-
-
 ```
 ### Collecting and annotating data
 
@@ -347,7 +343,7 @@ class beeConfig(Config):
 So the big question is am I any closer to detecting varroa mite? Yes, however for proper application, significant improvements need to be achieved, as outlined in the above paragraphs. Most importantly, this project has given me an opportunity to explore the process of retraining upon existing, proven object detection models, which is vastly more computationally efficient than training from scratch.
 
 
-Examples of good detection on bees themselves - lots of these
+Examples of good detection on bees themselves -  tends to work better when a single bee is present, multi-bees create too much complexity and generally result in poor outputs. 
 
 ![example1](images/1.jpg)
 ![example2](images/all-data-0.jpg)
@@ -374,7 +370,7 @@ Examples were the backgrounds were too complex and resulted in the varroa mite b
 ![example14](images/bad-results-49.jpg)
 
 
-###Resources:
+### Resources:
 
 ##### Image collection
 
