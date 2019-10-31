@@ -62,7 +62,6 @@ The following infographic illustrates an interesting fact about the nature of th
 - GoogleImagesDownload
 
 
-
 **File directory structure**
 
 The following describes the file directory struture of the project.
@@ -408,7 +407,7 @@ Examples were the backgrounds were too complex and resulted in the varroa mite b
 
 ##### Object detection model development
 
-- [Mask-RCNN Tutorial](https://machinelearningmastery.com/how-to-train-an-object-detection-model-with-keras/)
+- Source code in this repo based mainly from this [Mask-RCNN Tutorial](https://machinelearningmastery.com/how-to-train-an-object-detection-model-with-keras/)
 
 - [Food Detector - Mask-RCNN multiclass example](https://github.com/CrookedNoob/Mask_RCNN-Multi-Class-Detection/blob/master/food.py)
 
