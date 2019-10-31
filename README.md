@@ -4,6 +4,8 @@
 
 
 ```bash
+#!/usr/bin/env bash
+
 cd ~
 git clone https://github.com/dynafa/varroa_mite_detector
 cd varroa_mite_detector
@@ -12,6 +14,7 @@ tar -xzvf classes.tar.gz
 rm classes.tar.gz
 python3 -m venv vmd_venv_v1
 source vmd_venv_v1/bin/activate
+sudo python3 setup.py install
 pip3 install requirements.txt
 cd Working_directory
 python3 train.py
