@@ -2,7 +2,9 @@
 
 ![Drone](images/Tensorflow.jpg)
 
-###Introduction
+Note: This project is the documentation of an assignment of a university course, installation instructions will be available at a later date. References used are all linked at the bottom for anybody looking for info on how to retrain object detection models.  
+
+### Introduction
 
 The parasitic mite Varroa destructor is the greatest single driver of the global honey bee health decline. Better understanding of the association of this parasite and its host is critical to developing sustainable management practices.
 In this project, I looked at whether existing computer vision models can be used to accurately detect the varroa mite on bees. This is a challenging task, as the complexity of the environment and the location in which the varroa mite is commonly found is particularly high. Even in the case where a network can be successfully converged, extracting the right data from the bees without disturbing their activities is still going to be a significant challenge.
@@ -19,7 +21,7 @@ Preferred feeding location probabilities of varroa on an abult bee.
 
 The following infographic illustrates an interesting fact about the nature of the varroa mite and their interaction with their hosts, which is they are more likely to be present on the underside of the bee that on the bee's posterior side. Research in the field confirms the reasons why this is, " For five decades, we have believed that these mites consume hemolymph like a tick consumes blood, and that Varroa cause harm primarily by vectoring viruses. Our work shows that they cause damage more directly. Varroa externally digest and consume fat body tissue rather than blood." [Source](https://www.pnas.org/content/116/5/1792)
 
-###Project objectives and development processes:
+### Project objectives and development processes:
 **Project objectives**
 - Identify and localize 4 classes of objects in images and video
     - Queen bee
@@ -115,6 +117,43 @@ The following describes the file directory struture of the project.
 │   │       └── 150.jpg
 ├── dist
 │   └── mask_rcnn-2.1-py3.5.egg
+├── images
+│   ├── 001.jpg
+│   ├── 002.jpg
+│   ├── 158.jpg
+│   ├── 1.jpg
+│   ├── 31.jpg
+│   ├── Adult-bee-with-varroa-mites-2.png
+│   ├── all-data-0.jpg
+│   ├── all-data-12.jpg
+│   ├── all-data-13.jpg
+│   ├── all-data-21.jpg
+│   ├── annot_masks.jpg
+│   ├── bad-results-41.jpg
+│   ├── bad-results-48.jpg
+│   ├── bad-results-49.jpg
+│   ├── bad-results-.jpg
+│   ├── DSC_2257.JPG
+│   ├── msii7.png
+│   ├── Output4.jpg
+│   ├── Preferred_feeding_location_of_Varroa_destructor_mites_on_adult_host_bees.jpg
+│   ├── results-10.jpg
+│   ├── results-12.jpg
+│   ├── results-14.jpg
+│   ├── results-19.jpg
+│   ├── results-1.jpg
+│   ├── results-29.jpg
+│   ├── results-30.jpg
+│   ├── results-3.jpg
+│   ├── results-7.jpg
+│   ├── results-8.jpg
+│   ├── results-9.jpg
+│   ├── Tensorflow.jpg
+│   ├── training_results2.png
+│   ├── training_results3.png
+│   ├── training_results.png
+│   ├── varroa-data-1.jpg
+│   └── varroa-destructor-mites.jpg
 ├── LICENSE
 ├── MANIFEST.in
 ├── mask_rcnn.egg-info
@@ -127,47 +166,43 @@ The following describes the file directory struture of the project.
 │   ├── __init__.py
 │   ├── model.py
 │   ├── parallel_model.py
-│   ├── __pycache__
-│   │   ├── config.cpython-36.pyc
-│   │   ├── __init__.cpython-36.pyc
-│   │   ├── model.cpython-36.pyc
-│   │   └── utils.cpython-36.pyc
 │   ├── utils.py
 │   └── visualize.py
 ├── README.md
 ├── requirements.txt
 ├── setup.cfg
 ├── setup.py
-└── working_directory
-    ├── error-train-output.txt
+├── Training_data
+│   ├── data1.txt
+│   ├── data2.txt
+│   ├── data3.txt
+│   ├── plot_data.py
+│   ├── training_results2.png
+│   ├── training_results3.png
+│   └── training_results.png
+└── Working_directory
+    ├── copy_images.sh
     ├── evaluate.py
+    ├── find_bad_images.py
     ├── full_test.py
     ├── mask_rcnn_coco.h5
+    ├── move_xml.sh
     ├── parse_xml.py
     ├── predict.py
     ├── prepare_db.py
-    ├── queen_cfg20191029T0955
-    │   ├── events.out.tfevents.1572296135.mpgz390
-    │   ├── mask_rcnn_queen_cfg_0001.h5
-    │   ├── mask_rcnn_queen_cfg_0002.h5
-    │   ├── mask_rcnn_queen_cfg_0003.h5
-    │   ├── mask_rcnn_queen_cfg_0004.h5
-    │   ├── mask_rcnn_queen_cfg_0005.h5
-    │   ├── mask_rcnn_queen_cfg_0006.h5
-    │   ├── mask_rcnn_queen_cfg_0007.h5
-    │   ├── mask_rcnn_queen_cfg_0008.h5
-    │   ├── mask_rcnn_queen_cfg_0009.h5
-    │   ├── mask_rcnn_queen_cfg_0010.h5
-    │   ├── mask_rcnn_queen_cfg_0011.h5
-    │   └── mask_rcnn_queen_cfg_0012.h5
+    ├── rename_photos.py
     ├── server.go
     ├── sort.py
+    ├── sort_xml.py
     ├── test_object.py
     └── train.py
 
+23 directories, 1303 files
+
+
 
 ```
-###Collecting and annotating data
+### Collecting and annotating data
 
 GoogleImagesDownload was used to automate the collection of images from Google search, an example of the CLI inputs required can be seen below. Chromedriver was necessary as it is required by selenium, which is a great web automation library in Python.
 The total number of images retrieved was less 250, once all non-photographic material, such as cartoons or ads containing bees was purged from the recovered images.
@@ -231,9 +266,9 @@ The following describes the hardware and software used for running training, eva
 
 ![Msii7](images/msii7.png)
 
-####GPU Issues
+### GPU Issues
 
-When trying to run any neural network which uses convolution algorithms, the following code must be added to allow GPU memory growth. Depending on which version of Tensorflow you are using, there will be a different way to enable this.
+I found that when trying to run any neural network which uses convolution algorithms, at least on the Nvidia RTX series GPUs, the following code must be added to allow GPU memory growth. Depending on which version of Tensorflow you are using, there will be a different way to enable this. TF versions are just estimates, not exact.
 
 TF == 2.0.0
 ```python
@@ -241,7 +276,7 @@ physical_devices = tf.config.experimental.list_physical_devices('GPU')
 tf.config.experimental.set_memory_growth(physical_devices[0], True)
 ```
 
-TF <= 1.14.0
+TF == 1.14.0
 ```python
 gpu_options = tf.GPUOptions(allow_growth=True)
 sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
@@ -255,7 +290,7 @@ config.gpu_options.allow_growth = True
 session = tf.Session(config=config, ...)
 ```
 
-Additionally, the following code should be added to specify which CUDA should be used by the program. In multi-GPU systems, in order to use a different GPU, the CUDA_VISIBLE_DEVICES variable should be changed to the respective ID of that GPU. For using CPU only, the value can be set at -1.
+Additionally, the following code should be added to specify which CUDA device should be used by the program. In multi-GPU systems, in order to use a different GPU, the CUDA_VISIBLE_DEVICES variable should be changed to the respective ID of that GPU. For using CPU only, the value can be set at -1. For multiple GPU training using NVlink, definitely look into Tensorflow virtual GPU devices.
 
 ```python
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -270,7 +305,7 @@ The basic process used here is transfer learning, using a pretrained model (Mask
 
 ### Training and evaluation
 
-Training was performed in time constrained circumstances, so the new network is far from being fully converged. Nevertheless, improvement can be observed in these graphs of the loss during training (Sorry, not enough time for any fancy Tensorboard visualisations).
+Training was performed in time constrained circumstances, so the new network is far from being fully converged. Nevertheless, obvious improvement can be observed in these graphs of the loss during training (Sorry, not enough time for any fancy Tensorboard visualisations).
 
 ![Training results](images/training_results.png)
 ![Training results2](images/training_results2.png)
@@ -283,13 +318,60 @@ Several factors effected the overall precision of the network, most notably the 
 
 **Considering hyper-parameters**
 
-One important observation that needs to be made during the training processes is the selection of relevant hyper-parameters. 
+One important observation that needs to be made during the training processes is the selection of relevant hyper-parameters, in this particular application, hyper-parameters are set by overriding the Config class provided by mrcnn. The most obvious thing which stood out to me was that the margin between the confidence of a real varroa mite and an erroneous detection is extremely small.
+This cannot simply be overcome by more training, as it seems that it is an issue related to data sparsity and inaccuracy. Not only do the detection min confidence and detection NMS threshold need to be adjusted, but the data needs to be reviewed, and also the dataset images cropped to limit what the model is able to perform detection upon.
 
+In the example below, although difficult to see, there are obvious problems involving false positive detections in the background pixels. Although it did detect the real varroa mite, it is also detecting things in the BG to a confidence level beyond 99%. Sparse data seemingly compounds inaccuracy to the point that hyper-parameter control is insufficient to eliminate this problem. However, I believe given the time to provide better data to the network, that hyper-parameter control will provide the sufficient means to significantly improve performance. 
 
+![Outliers](images/31.jpg)
+```python
+class beeConfig(Config):
+	# define the name of the configuration
+	NAME = "bee_cfg"
+	# number of classes (background + classes)
+	NUM_CLASSES = 1 + 1
+	# number of training steps per epoch
+	STEPS_PER_EPOCH = 120
+	# learning rate
+	LEARNING_RATE = 0.0001
+	# max detection instances
+	DETECTION_MAX_INSTANCES = 10
+	# min confidence
+	DETECTION_MIN_CONFIDENCE = 0.99
+	# non-maximal suppression threshold 
+	DETECTION_NMS_THRESHOLD = 0.99
+```
 
 ### Results
 
-So the big question is am I any closer to detecting varroa mite? Yes, however for proper application, significant improvements need to be achieved. 
+So the big question is am I any closer to detecting varroa mite? Yes, however for proper application, significant improvements need to be achieved, as outlined in the above paragraphs. Most importantly, this project has given me an opportunity to explore the process of retraining upon existing, proven object detection models, which is vastly more computationally efficient than training from scratch.
+
+
+Examples of good detection on bees themselves - lots of these
+
+![example1](images/1.jpg)
+![example2](images/all-data-0.jpg)
+
+Examples were the varroa mite was detected, but still potentially contained some erroneous output
+
+![example3](images/results-1.jpg)
+![example4](images/results-3.jpg)
+![example5](images/results-7.jpg)
+![example6](images/results-8.jpg)
+![example7](images/results-9.jpg)
+![example8](images/results-10.jpg)
+![example9](images/results-12.jpg)
+![example10](images/results-14.jpg)
+![example11](images/results-19.jpg)
+![example12](images/results-29.jpg)
+![example13](images/results-30.jpg)
+
+Examples were the backgrounds were too complex and resulted in the varroa mite being completely missed or contained to many erroneous detections to be significant
+
+![example14](images/bad-results-.jpg)
+![example14](images/bad-results-41.jpg)
+![example14](images/bad-results-48.jpg)
+![example14](images/bad-results-49.jpg)
 
 
 ###Resources:
