@@ -23,7 +23,7 @@ The following infographic illustrates an interesting fact about the nature of th
 
 ### Project objectives and development processes:
 **Project objectives**
-- Identify and localize 4 classes of objects in images and video
+- Identify and localize 4 classes of objects in images of bees
     - Queen bee
     - Worker bee
     - Drone bee
