@@ -35,10 +35,10 @@ The following infographic illustrates an interesting fact about the nature of th
 
 1. Collect data required for training using GoogleImageDownload
 2. Label the different data types
-3. Create a function to store the data into HDF5 format using h5py
+3. Create a function to store the data into HDF5 format using h5py 
 4. Create a function to load that data from HDF5 format into the program and split it into training and test data sets
 5. Create a sequential neural network for the data to pass through.
-6. Initially create a simple DNN for image classification with emphasis on the data storage format
+6. Initially create a simple DNN for image classification with emphasis on the data storage format - see https://github.com/dynafa/keras_examples
 7. Bring in CNN concepts to achieve object detection.
 
 **Potential candidates for object detection model**
