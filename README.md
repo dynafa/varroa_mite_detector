@@ -1,11 +1,17 @@
 # Varroa Mite Object-Detection Application
 
 ![Drone](images/Tensorflow.jpg)
+##### Installation
+Ubuntu 18.04 is recommended.
 
+If using a GPU:
+1. Ensure relevant Nvidia drivers are installed.
+2. Update requirements.txt to tensorflow-gpu==1.14.0
+3. Make sure to allow GPU memory growth in code
 
+Copy and paste the following into a bash script file:
 ```bash
 #!/usr/bin/env bash
-
 cd ~
 git clone https://github.com/dynafa/varroa_mite_detector
 cd varroa_mite_detector
@@ -20,6 +26,11 @@ cd Working_directory
 python3 train.py
 python3 evaluate.py
 python3 predict.py
+```
+Then execute script
+```bash
+$ sudo chmod +x scriptname.sh
+$ ./scriptname.sh
 ```
 
 References used are all linked at the bottom for anybody looking for info on how to retrain object detection models.  
