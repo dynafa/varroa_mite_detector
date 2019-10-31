@@ -2,7 +2,24 @@
 
 ![Drone](images/Tensorflow.jpg)
 
-Note: This project is the documentation of an assignment of a university course, installation instructions will be available at a later date. References used are all linked at the bottom for anybody looking for info on how to retrain object detection models.  
+
+```bash
+cd ~
+git clone https://github.com/dynafa/varroa_mite_detector
+cd varroa_mite_detector
+wget https://dynafa.com/static/resources/classes.tar.gz
+tar -xzvf classes.tar.gz
+rm classes.tar.gz
+python3 -m venv vmd_venv_v1
+source vmd_venv_v1/bin/activate
+pip3 install requirements.txt
+cd Working_directory
+python3 train.py
+python3 evaluate.py
+python3 predict.py
+```
+
+References used are all linked at the bottom for anybody looking for info on how to retrain object detection models.  
 
 ### Introduction
 
