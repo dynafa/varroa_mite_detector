@@ -3,6 +3,7 @@
 ![Drone](images/Tensorflow.jpg)
 ##### Installation
 Ubuntu 18.04 is recommended.
+Install [Python3 virtual environments](https://gist.github.com/frfahim/73c0fad6350332cef7a653bcd762f08d) before starting installation.
 
 If using a GPU:
 1. Ensure relevant Nvidia drivers are installed.
@@ -13,15 +14,18 @@ Copy and paste the following into a bash script file:
 ```bash
 #!/usr/bin/env bash
 cd ~
+python3 -m venv vmd_venv_v1
+which python3
+source ~/vmd_venv_v1/bin/activate
 git clone https://github.com/dynafa/varroa_mite_detector
 cd varroa_mite_detector
 wget https://dynafa.com/static/resources/classes.tar.gz
 tar -xzvf classes.tar.gz
 rm classes.tar.gz
-python3 -m venv vmd_venv_v1
-source vmd_venv_v1/bin/activate
 sudo python3 setup.py install
+pip3 install --upgrade pip
 pip3 install requirements.txt
+echo "Project Python3 envidronment setup finished"
 ```
 Script to download image tools for building custom dataset (See "Collecting and annotating data")
 ```
@@ -37,16 +41,16 @@ sudo python3 setup.py install
 ```
 Then execute bash scripts to install
 ```bash
-$ bash scriptname
+$ bash <path>/scriptname.sh
 or
+$ cd <path>
 $ sudo chmod +x scriptname.sh
 $ ./scriptname.sh
 ```
 Finally, execute python scripts to train, evaluate and predict.
 ```bash
-$ cd ~
-$ source vmd_venv_v1/bin/activate
-$ cd Working_directory
+$ source ~/vmd_venv_v1/bin/activate
+$ cd varroa_mite-detector/Working_directory
 $ python3 train.py
 $ python3 evaluate.py
 $ python3 predict.py
