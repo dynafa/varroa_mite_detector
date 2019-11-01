@@ -44,6 +44,8 @@ $ ./scriptname.sh
 ```
 Finally, execute python scripts to train, evaluate and predict.
 ```bash
+$ cd ~
+$ source vmd_venv_v1/bin/activate
 $ cd Working_directory
 $ python3 train.py
 $ python3 evaluate.py
