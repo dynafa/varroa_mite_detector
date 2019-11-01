@@ -15,8 +15,8 @@ Copy and paste the following into a bash script file:
 #!/usr/bin/env bash
 cd ~
 python3 -m venv vmd_venv_v1
-which python3
 source ~/vmd_venv_v1/bin/activate
+which python3
 git clone https://github.com/dynafa/varroa_mite_detector
 cd varroa_mite_detector
 wget https://dynafa.com/static/resources/classes.tar.gz
