@@ -28,7 +28,7 @@ pip3 install requirements.txt
 echo "Project Python3 environment setup finished"
 ```
 Script to download image tools for building custom dataset (See "Collecting and annotating data")
-```
+```bash
 #!/usr/bin/env bash
 cd ~
 git clone https://github.com/hardikvasa/google-images-download
