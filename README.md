@@ -59,6 +59,7 @@ $ python3 predict.py
 References used are all linked at the bottom for tutorials on TF/Keras and how to retrain object detection models.  
 
 ### Introduction
+![varroa](images/varroa-destructor-mites.jpg)
 
 The parasitic mite Varroa destructor is the greatest single driver of the global honey bee health decline. Better understanding of the association of this parasite and its host is critical to developing sustainable management practices.
 In this project, I looked at whether existing computer vision models can be used to accurately detect the varroa mite on bees. This is a challenging task, as the complexity of the environment and the location in which the varroa mite is commonly found is particularly high. Even in the case where a network can be successfully converged, extracting the right data from the bees without disturbing their activities is still going to be a significant challenge.
