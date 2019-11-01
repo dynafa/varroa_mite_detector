@@ -6,8 +6,8 @@ Ubuntu 18.04 is recommended.
 
 If using a GPU:
 1. Ensure relevant Nvidia drivers are installed.
-2. Update requirements.txt to tensorflow-gpu==1.14.0
-3. Make sure to allow GPU memory growth in code
+2. Update requirements.txt to "tensorflow-gpu==1.14.0"
+3. Make sure to allow GPU memory growth in code (see "GPU Issues")
 
 Copy and paste the following into a bash script file:
 ```bash
@@ -22,18 +22,35 @@ python3 -m venv vmd_venv_v1
 source vmd_venv_v1/bin/activate
 sudo python3 setup.py install
 pip3 install requirements.txt
-cd Working_directory
-python3 train.py
-python3 evaluate.py
-python3 predict.py
 ```
-Then execute script
+Script to download image tools for building custom dataset (See "Collecting and annotating data")
+```
+#!/usr/bin/env bash
+cd ~
+git clone https://github.com/hardikvasa/google-images-download
+cd google-images-download
+sudo python3 setup.py install
+cd ~
+git clone https://github.com/tzutalin/labelImg
+cd labelImg
+sudo python3 setup.py install
+```
+Then execute bash scripts to install
 ```bash
+$ bash scriptname
+or
 $ sudo chmod +x scriptname.sh
 $ ./scriptname.sh
 ```
+Finally, execute python scripts to train, evaluate and predict.
+```bash
+$ cd Working_directory
+$ python3 train.py
+$ python3 evaluate.py
+$ python3 predict.py
+```
 
-References used are all linked at the bottom for anybody looking for info on how to retrain object detection models.  
+References used are all linked at the bottom for tutorials on TF/Keras and how to retrain object detection models.  
 
 ### Introduction
 
