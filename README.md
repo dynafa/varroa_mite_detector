@@ -25,7 +25,7 @@ rm classes.tar.gz
 sudo python3 setup.py install
 pip3 install --upgrade pip
 pip3 install requirements.txt
-echo "Project Python3 envidronment setup finished"
+echo "Project Python3 environment setup finished"
 ```
 Script to download image tools for building custom dataset (See "Collecting and annotating data")
 ```
