@@ -335,7 +335,7 @@ config.gpu_options.allow_growth = True
 session = tf.Session(config=config, ...)
 ```
 
-Additionally, the following code should be added to specify which CUDA device should be used by the program. In multi-GPU systems, in order to use a different GPU, the CUDA_VISIBLE_DEVICES variable should be changed to the respective ID of that GPU. For using CPU only, the value can be set at -1. For multiple GPU training using NVlink, definitely look into Tensorflow virtual GPU devices.
+Additionally, the following code should be added to specify which CUDA device should be used by the program. In multi-GPU systems, in order to use a different GPU, the CUDA_VISIBLE_DEVICES variable should be changed to the respective ID of that GPU. For using CPU only, the value can be set at -1. For multiple GPU training using NVlink, definitely look into  [Tensorflow virtual GPU devices](https://www.tensorflow.org/guide/gpu#using_multiple_gpus)
 
 ```python
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
