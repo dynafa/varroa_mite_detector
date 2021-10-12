@@ -21,7 +21,7 @@ mask-rcnn==2.1
 matplotlib==3.0.3
 networkx==2.4
 numpy==1.17.3
-opencv-contrib-python==4.1.1.26
+opencv-contrib-python==4.2.0.32
 parso==0.5.1
 pexpect==4.7.0
 pickleshare==0.7.5
